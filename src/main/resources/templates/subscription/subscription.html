@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" type="text/css">
+
+    <title>Subscriptions page</title>
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt=""
+             width="72" height="72">
+        <h2>Subscribed users</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group
+            has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div th:if="${successMessage != null}" class="alert alert-success" role="alert" th:text="${successMessage}"></div>
+            <div th:if="${errorMessage != null}" class="alert alert-danger" role="alert" th:text="${errorMessage}"></div>
+
+            <h4 class="mb-3">Subscription data</h4>
+            <form class="needs-validation" novalidate method="post">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid last name is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">E-mail</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Your email is required.
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Subscribe to newsletter</button>
+            </form>
+        </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb3">Subscribed users</h4>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="subscription : ${subscriptions}" th:text="${subscription.firstName + ' ' + subscription.lastName + ' - ' + subscription.email}"></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2018 Spring Boot Demo</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://github.com/MagnarAr/spring-boot-demo" target="_blank">Github</a></li>
+        </ul>
+    </footer>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script type="javascript" src="js/jquery/jquery-3.2.1.slim.min.js"></script>
+<script type="javascript" src="js/popper/popper.min.js"></script>
+<script type="javascript" src="js/bootstrap/bootstrap.min.js"></script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+</body>
+</html>

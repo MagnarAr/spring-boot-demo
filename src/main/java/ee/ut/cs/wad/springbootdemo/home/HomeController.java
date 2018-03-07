@@ -15,6 +15,8 @@ public class HomeController {
     public String greeting(
             @RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
+        Object[] animals = {"cat", "dog", 1, 2};
+        model.addAttribute("animals", animals);
         return TEMPLATE_GREETING;
     }
 

@@ -13,12 +13,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // public resources
-        String[] resources = {"/greeting", "/css/**", "/js/**"};
+        String[] resources = {"/greeting", "/css/**", "/js/**", "/subscription"};
 
         // with spring security, we authorize all requests except the paths described in "resources" array above
         http.cors().and().csrf().disable();
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, resources).permitAll()
+                .antMatchers(HttpMethod.POST, resources).permitAll()
                 .anyRequest().authenticated().and().formLogin().permitAll();
     }
 }
