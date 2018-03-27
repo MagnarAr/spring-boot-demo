@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css">
 
+    <!-- custom test css -->
+    <link rel="stylesheet" type="text/css" href="/css/test/test.css">
     <title>Subscriptions page</title>
 </head>
 <body class="bg-light">
@@ -89,7 +91,10 @@
     </div>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2018 Spring Boot Demo</p>
+        <!-- näeme, et p elemendi tekst on seda värvi, mis custom css failis -->
+        <div id="custom-css-test">
+            <p class="mb-1">&copy; 2018 Spring Boot Demo</p>
+        </div>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="https://github.com/MagnarAr/spring-boot-demo" target="_blank">Github</a></li>
         </ul>
@@ -102,6 +107,9 @@
 <script type="javascript" src="js/jquery/jquery-3.2.1.slim.min.js"></script>
 <script type="javascript" src="js/popper/popper.min.js"></script>
 <script type="javascript" src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- kui selle lisame dokumenti, siis käivitatakse automaatselt script faili sisu -->
+<script type="text/javascript" src="/js/test/script.js"></script>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
