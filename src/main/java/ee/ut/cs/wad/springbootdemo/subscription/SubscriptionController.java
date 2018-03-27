@@ -1,12 +1,14 @@
 package ee.ut.cs.wad.springbootdemo.subscription;
 
 import ee.ut.cs.wad.springbootdemo.subscription.dto.SubscriptionDTO;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class SubscriptionController {
@@ -35,6 +37,8 @@ public class SubscriptionController {
         subscription.setType(SubscriptionType.EMAIL);
 
         try {
+            // get image from DTO
+            subscription.setImageSource(getImageBase64Format(subscriptionDTO.getAvatarImage()));
             // persist entity object to DB
             subscriptionService.addSubscription(subscription);
             // if no exeption was thrown, everything went successfully
@@ -46,5 +50,11 @@ public class SubscriptionController {
         }
 
         return SUBSCRIPTION_PAGE;
+    }
+
+    // here we take uploaded image bytes and map it to the string
+    // that can later be used to show the image in HTML <img src="">
+    private String getImageBase64Format(MultipartFile file) throws Exception {
+        return "data:" + file.getContentType() + ";base64," + Base64.encodeBase64String(file.getBytes());
     }
 }

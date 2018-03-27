@@ -27,7 +27,8 @@
             <div th:if="${errorMessage != null}" class="alert alert-danger" role="alert" th:text="${errorMessage}"></div>
 
             <h4 class="mb-3">Subscription data</h4>
-            <form class="needs-validation" novalidate method="post">
+            <!-- enctype is needed for multipart form to work for backend -->
+            <form class="needs-validation" enctype="multipart/form-data" novalidate method="post">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
@@ -58,6 +59,12 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="avatarImage">First name</label>
+                        <input type="file" class="form-control" id="avatarImage" name="avatarImage">
+                    </div>
+                </div>
 
                 <hr class="mb-4">
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Subscribe to newsletter</button>
@@ -69,7 +76,14 @@
         <div class="col-md-12">
             <h4 class="mb3">Subscribed users</h4>
             <ul class="list-group">
-                <li class="list-group-item" th:each="subscription : ${subscriptions}" th:text="${subscription.firstName + ' ' + subscription.lastName + ' - ' + subscription.email}"></li>
+                <li class="list-group-item" th:each="subscription : ${subscriptions}">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img width="100%" th:src="${subscription.getImageSource()}"/>
+                        </div>
+                        <div class="col-md-9" th:text="${subscription.getInfo()}"></div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

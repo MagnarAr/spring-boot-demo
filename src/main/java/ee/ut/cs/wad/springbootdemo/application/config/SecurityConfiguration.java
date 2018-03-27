@@ -18,8 +18,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // with spring security, we authorize all requests except the paths described in "resources" array above
         http.cors().and().csrf().disable();
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, resources).permitAll()
-                .antMatchers(HttpMethod.POST, resources).permitAll()
-                .anyRequest().authenticated().and().formLogin().permitAll();
+                .antMatchers("/**").permitAll();
+//                .antMatchers(HttpMethod.GET, resources).permitAll()
+//                .antMatchers(HttpMethod.POST, resources).permitAll()
+//                .anyRequest().authenticated().and().formLogin().permitAll();
     }
 }

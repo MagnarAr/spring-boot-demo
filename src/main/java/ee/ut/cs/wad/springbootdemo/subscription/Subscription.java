@@ -21,4 +21,9 @@ public class Subscription {
     private String firstName;
     private String lastName;
     private String email;
+    private String imageSource; // type + base64 encoded image bytes
+
+    public String getInfo() {
+        return firstName + " " + lastName + " - " + email;
+    }
 }
