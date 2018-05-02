@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -21,6 +21,20 @@
         <h2>Subscribed users</h2>
         <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group
             has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+
+    <div class=" col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Google login with OAuth2</div>
+            <div class="panel-body">
+                <div class="col-md-12" sec:authorize="!isFullyAuthenticated()">
+                    <a class="btn btn-default" href="/google/login">Google Login</a>
+                </div>
+                <div class="col-md-12" sec:authorize="isFullyAuthenticated()">
+                    <a class="btn btn-default" href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
